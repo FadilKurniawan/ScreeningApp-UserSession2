@@ -77,7 +77,7 @@ class GuestActivity : AppCompatActivity(), AdapterView.OnItemClickListener ,IGue
 
     private fun RefreshListener() {
         swipe.setOnRefreshListener {
-            GuestPresenter(this).getDataGuest(pages,per_pages)
+            GuestPresenter(this).getDataGuest(1,per_pages)
         }
     }
 
