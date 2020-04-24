@@ -10,6 +10,7 @@ import android.widget.*
 import com.devfk.ma.screeningapp.R
 import com.devfk.ma.screeningapp.data.Model.DataGuest
 import com.devfk.ma.screeningapp.data.Model.Guest
+import com.devfk.ma.screeningapp.ui.Component.CircleTransform
 import com.squareup.picasso.Picasso
 
 
@@ -42,7 +43,9 @@ class GuestAdapter(context: Context, nameItem: ArrayList<DataGuest>) : BaseAdapt
 
         Picasso.get()
             .load(item[position].avatar)
-            .placeholder(R.drawable.ic_guest)
+            .transform(CircleTransform())
+            .fit()
+            .placeholder(R.drawable.ic_account)
             .error(R.drawable.ic_error)
             .into(img)
 

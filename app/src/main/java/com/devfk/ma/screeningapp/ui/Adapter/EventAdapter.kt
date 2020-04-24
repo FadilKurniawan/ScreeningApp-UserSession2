@@ -3,6 +3,7 @@ package com.devfk.ma.screeningapp.ui.Adapter
 import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,7 @@ class EventAdapter(nameItem: ArrayList<Event>) : BaseAdapter(){
         }
 
         image.setBackgroundResource(item[position].image)
+        image.scaleType = ImageView.ScaleType.CENTER_CROP
 
         return view
     }

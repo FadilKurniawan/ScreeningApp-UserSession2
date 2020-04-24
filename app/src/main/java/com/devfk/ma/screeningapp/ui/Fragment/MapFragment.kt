@@ -64,12 +64,14 @@ class MapFragment : Fragment() , OnMapReadyCallback , CarouselAdapter.EventListe
         // Add a marker in Sydney and move the camera
         val first = LatLng(list[0].lat.toDouble(), list[0].long.toDouble())
         changeColorDefault()
-        mMap.addMarker(MarkerOptions()
+        mMap.addMarker(
+            MarkerOptions()
             .position(first)
-            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-            .title(list[0].name))
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_selected))
+//            .title(list[0].name)
+        )
             .showInfoWindow()
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(first, 17f))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(first, 15f))
         setScrolled()
     }
 
@@ -80,12 +82,14 @@ class MapFragment : Fragment() , OnMapReadyCallback , CarouselAdapter.EventListe
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 val move = LatLng(list[position].lat.toDouble(), list[position].long.toDouble())
+                mMap.clear()
                 changeColorDefault()
                 mMap.addMarker(MarkerOptions()
                     .position(move)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                    .title(list[position].name)).showInfoWindow()
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(move, 17f))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_selected))
+//                    .title(list[position].name)
+                ).showInfoWindow()
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(move))
             }
 
             override fun onPageSelected(position: Int) {
@@ -98,8 +102,9 @@ class MapFragment : Fragment() , OnMapReadyCallback , CarouselAdapter.EventListe
         for (i in list){
             mMap.addMarker(MarkerOptions()
                 .position(LatLng(i.lat.toDouble(), i.long.toDouble()))
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-                .title(i.name)).showInfoWindow()
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_unselected))
+//                .title(i.name)
+            ).showInfoWindow()
         }
     }
 

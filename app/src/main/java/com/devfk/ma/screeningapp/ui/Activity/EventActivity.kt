@@ -38,19 +38,19 @@ class EventActivity : AppCompatActivity() ,AdapterView.OnItemClickListener,View.
         eventList.add(
             Event("Saturasi Volume 1", "April 03  2020", R.drawable.event3,
                 mutableListOf("#nutricia","#highlight F3"),resources.getString(R.string.txv_detail),
-                "-6.899201", "107.618724"
+                "-6.910463", "107.619621"
             )
         )
         eventList.add(
             Event("Charity Selection Night", "March 23 2020", R.drawable.event2,
                 mutableListOf("#nutricia","#event"),resources.getString(R.string.txv_detail),
-                "-6.900673", "107.615172"
+                "-6.908583", "107.616208"
             )
         )
         eventList.add(
             Event("ANGKLUNG MUSIC CONCERT", " March 20 2020", R.drawable.event4,
                 mutableListOf("#nutricia","#highlight F3","#event"),resources.getString(R.string.txv_detail),
-                "-6.899171", "107.616620"
+                "-6.917161", "107.629460"
             )
         )
 
@@ -59,12 +59,17 @@ class EventActivity : AppCompatActivity() ,AdapterView.OnItemClickListener,View.
 
         btn_back.setOnClickListener(this)
         btn_media.setOnClickListener(this)
+        btn_search.setOnClickListener(this)
         btn_media.visibility = View.VISIBLE
+        btn_search.visibility = View.VISIBLE
     }
 
     override fun onBackPressed() {
         if(result.isNotEmpty()){
             sendDataBack()
+        }
+        if(supportFragmentManager.backStackEntryCount>0){
+            btn_media.setBackgroundResource(R.drawable.ic_map_view)
         }
         super.onBackPressed()
     }
@@ -88,13 +93,18 @@ class EventActivity : AppCompatActivity() ,AdapterView.OnItemClickListener,View.
                 onBackPressed()
             }
             R.id.btn_media ->{
-                onMediaClick()
+                if(fragment_container.visibility==View.GONE||supportFragmentManager.backStackEntryCount==0) {
+                    onMediaClick()
+                    btn_media.setBackgroundResource(R.drawable.ic_list_view)
+                }else{
+                    onBackPressed()
+                    btn_media.setBackgroundResource(R.drawable.ic_map_view)
+                }
             }
         }
     }
 
     private fun onMediaClick() {
-        if(fragment_container.visibility==View.GONE){
             fragment_container.visibility = View.VISIBLE
             val mapFragment = MapFragment.newInstance(eventList)
             val manager = supportFragmentManager
@@ -102,6 +112,5 @@ class EventActivity : AppCompatActivity() ,AdapterView.OnItemClickListener,View.
             transaction.replace(R.id.fragment_container,mapFragment)
             transaction.addToBackStack(null)
             transaction.commit()
-        }
     }
 }

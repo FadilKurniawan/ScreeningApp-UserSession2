@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import com.devfk.ma.screeningapp.R
 import com.devfk.ma.screeningapp.ui.Component.CustomAlertDialog
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.form_login.*
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener{
 

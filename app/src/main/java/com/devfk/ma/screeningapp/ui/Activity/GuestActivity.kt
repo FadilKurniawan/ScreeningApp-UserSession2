@@ -71,6 +71,7 @@ class GuestActivity : AppCompatActivity(), AdapterView.OnItemClickListener ,IGue
         gridView.onItemClickListener = this
         btn_back.setOnClickListener(this)
         btn_media.visibility = View.GONE
+        btn_search.visibility = View.GONE
         swipe = findViewById<SwipeRefreshLayout>(R.id.swipeContainer)
     }
 

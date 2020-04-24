@@ -1,6 +1,7 @@
 package com.devfk.ma.screeningapp.ui.Component
 
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,14 +31,21 @@ class CarouselAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = LayoutInflater.from(context)
-        var view =layoutInflater.inflate(R.layout.carousel_item,container,false)
+        var view =layoutInflater.inflate(R.layout.card_carousel_item,container,false)
 
-        var img = view.findViewById<ImageView>(R.id.carouselImg)
-        var title = view.findViewById<TextView>(R.id.carouselTitle)
+        var img = view.findViewById<ImageView>(R.id.imgEvent)
+        var title = view.findViewById<TextView>(R.id.txvNameEvent)
+        var description = view.findViewById<TextView>(R.id.txvDetailEvent)
+        var date = view.findViewById<TextView>(R.id.txvDateEvent)
 
 
         img.setImageResource(lisEvent[position].image)
+        img.scaleType = ImageView.ScaleType.CENTER_CROP
+
         title.text = lisEvent[position].name
+        description.text = lisEvent[position].detail
+        date.text = lisEvent[position].date
+
         container.addView(view,0)
         return view
     }
